@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import AtkCalc from './AtkCalc'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(input) {
+    alert("Submitted" + JSON.stringify(input));
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Tools</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <AtkCalc onSubmit={this.handleSubmit} />
       </div>
     );
   }
