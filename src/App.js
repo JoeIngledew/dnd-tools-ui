@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import AtkCalc from './AtkCalc'
+import CalcApi from './api/calcApi';
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class App extends Component {
 
   handleSubmit(input) {
     alert("Submitted" + JSON.stringify(input));
+    let result = CalcApi.getResults(input);
+    alert("Result" + JSON.stringify(result));
   }
 
   render() {
