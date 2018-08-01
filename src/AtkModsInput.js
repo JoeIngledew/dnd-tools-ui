@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import SingleAtkInput from './SingleAtkInput';
+import { Button } from 'react-bootstrap';
 
 class AtkModsInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
       attacks: [
-        { AtkMod: 0, DmgMod: 0 }
+        { AttackBonus: 0, DamageBonus: 0 }
       ],
       numInputs: 0
     }
@@ -33,14 +34,14 @@ class AtkModsInput extends Component {
   handleAtkModChange(value, key) {
     if (this.state.attacks[key]) {
       let newState = this.state.attacks;
-      newState[key].AtkMod = value;
+      newState[key].AttackBonus = value;
       this.setState({
         attacks: newState
       });
     }
     else {
       this.setState({
-        attacks: [...this.state.attacks, { AtkMod: value, DmgMod: 0 }]
+        attacks: [...this.state.attacks, { AttackBonus: value, DamageBonus: 0 }]
       });
     }
     this.props.onModsChange(this.state.attacks);
@@ -49,14 +50,14 @@ class AtkModsInput extends Component {
   handleDmgModChange(value, key) {
     if (this.state.attacks[key]) {
       let newState = this.state.attacks;
-      newState[key].DmgMod = value;
+      newState[key].DamageBonus = value;
       this.setState({
         attacks: newState
       });
     }
     else {
       this.setState({
-        attacks: [...this.state.attacks, { AtkMod: 0, DmgMod: value }]
+        attacks: [...this.state.attacks, { AttackBonus: 0, DamageBonus: value }]
       });
     }
     this.props.onModsChange(this.state.attacks);
@@ -73,8 +74,8 @@ class AtkModsInput extends Component {
   render() {
     return (
       <div>
+        <Button block bsStyle="info" onClick={this.handleAdditionalInput}>Add an attack</Button>
         {this.renderInputs()}
-        <button onClick={this.handleAdditionalInput}>Add another</button>
       </div>
     )
   }
