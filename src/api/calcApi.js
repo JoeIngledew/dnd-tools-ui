@@ -7,6 +7,7 @@ var CalcApi = {
     let request = {
       Ac: input.ac,
       Modifier: input.modifier,
+      DmgModifier: input.dmgmodifier,
       Stacks: input.stacks,
       CritMinimum: input.critLowerBound,
       CritMultiplier: input.critMultiplier,
@@ -40,5 +41,6 @@ var CalcApi = {
     });
   }
 }
+
 
 export default CalcApi;

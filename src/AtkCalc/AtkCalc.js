@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AtkModsInput from './AtkModsInput'
-import NumericalInput from './NumericalInput'
+import NumericalInput from '../Utility/NumericalInput'
 import { FormControl,Form } from 'react-bootstrap';
 
 class AtkCalc extends Component {
@@ -10,6 +10,7 @@ class AtkCalc extends Component {
       ac: 10,
       stacks: 0,
       modifier: 0,
+      dmgmodifier: 0,
       critLowerBound: 20,
       critMultiplier: 2,
       attacks: []
@@ -22,8 +23,6 @@ class AtkCalc extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.existingStacks !== prevProps.existingStacks) {
-      console.log("Updating AtkCalc state with new val for stacks")
-      console.log(this.props.existingStacks)
       this.setState({
         stacks: Number(this.props.existingStacks)
       });
@@ -32,7 +31,6 @@ class AtkCalc extends Component {
 
   handleInputChange(name, value) {
     if (name === "stacks") {
-      console.log("stacks updated in AtkCalc to " + value)
       this.props.onChangeStacks(Number(value));
     }
 
@@ -59,7 +57,8 @@ class AtkCalc extends Component {
           <FormControl type="submit" onClick={this.handleSubmit} value="Calculate!" />
           <NumericalInput name={"ac"} value={this.state.ac} onChange={this.handleInputChange} label={"AC"}/>
           <NumericalInput name={"stacks"} value={this.props.existingStacks} onChange={this.handleInputChange} label={"Stacks"}/>
-          <NumericalInput name={"modifier"} value={this.state.modifier} onChange={this.handleInputChange} label={"Modifier"}/>
+          <NumericalInput name={"modifier"} value={this.state.modifier} onChange={this.handleInputChange} label={"AtkModifier"}/>
+          <NumericalInput name={"dmgmodifier"} value={this.state.dmgmodifier} onChange={this.handleInputChange} label={"DmgModifier"}/>
           <NumericalInput name={"critLowerBound"} value={this.state.critLowerBound} onChange={this.handleInputChange} label={"CritLowerBound"}/>
           <NumericalInput name={"critMultiplier"} value={this.state.critMultiplier} onChange={this.handleInputChange} label={"CritMultiplier"}/>
           
@@ -71,24 +70,3 @@ class AtkCalc extends Component {
 }
 
 export default AtkCalc;
-
-/* <label>
-            AC
-            <input type="number" onChange={this.handleInputChange} name="ac" value={this.state.ac} />
-          </label>
-          <label>
-            <i>BitW</i> stacks
-            <input type="number" onChange={this.handleInputChange} name="stacks" value={this.props.existingStacks} />
-          </label>
-          <label>
-            Modifier
-            <input type="number" onChange={this.handleInputChange} name="modifier" value={this.state.modifier}/>
-          </label>
-          <label>
-            Crit Lower Bound
-            <input type="number" onChange={this.handleInputChange} name="critLowerBound" value={this.state.critLowerBound} />
-          </label>
-          <label>
-            Crit Multiplier
-            <input type="number" onChange={this.handleInputChange} name="critMultiplier" value={this.state.critMultiplier} />
-          </label> */

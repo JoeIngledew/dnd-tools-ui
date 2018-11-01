@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 class NumericalInput extends Component {
@@ -25,7 +25,6 @@ class NumericalInput extends Component {
 
   componentDidUpdate(prevProps) {
     if(this.props.value !== prevProps.value) {
-      //console.log("updating prop value! in numerical input")
       this.setState({
         value: this.props.value
       })
@@ -47,7 +46,7 @@ class NumericalInput extends Component {
           controlId={this.state.name}
           validationState={this.getValidationState()}>
           <ControlLabel>{this.props.label}</ControlLabel>
-          <FormControl type="number" onChange={x => this.handleInputChange(this.state.name, x.target.value)} placeholder={this.state.value} />
+          <FormControl type="number" onChange={x => this.handleInputChange(this.state.name, x.target.value)} value={this.state.value} />
         </FormGroup>
       </div>
     )
@@ -55,12 +54,3 @@ class NumericalInput extends Component {
 }
 
 export default NumericalInput
-
-/* <Col sm={6} md={4}>
-            <label htmlFor={this.state.name} className="input-label">
-              {this.props.label}
-            </label>
-          </Col>
-          <Col sm={6} md={8}>
-            <input id={this.state.name} type="number" onChange={this.handleInputChange} name={this.state.name} value={this.state.value} className="input-numerical" />
-          </Col> */

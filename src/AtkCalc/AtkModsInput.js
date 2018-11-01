@@ -9,12 +9,14 @@ class AtkModsInput extends Component {
       attacks: [
         { AttackBonus: 0, DamageBonus: 0 }
       ],
-      numInputs: 0
+      numInputs: 0,
+      isDefault: false
     }
 
     this.handleAdditionalInput = this.handleAdditionalInput.bind(this);
     this.handleAtkModChange = this.handleAtkModChange.bind(this);
     this.handleDmgModChange = this.handleDmgModChange.bind(this);
+    this.handleDefaultAttackInput = this.handleDefaultAttackInput.bind(this);
   }
 
   handleAdditionalInput(event) {
@@ -29,6 +31,13 @@ class AtkModsInput extends Component {
     });
 
     event.preventDefault();
+  }
+
+  handleDefaultAttackInput() {
+    this.setState({
+      numInputs: 4,
+      isDefault: true
+    });
   }
 
   handleAtkModChange(value, key) {
@@ -66,8 +75,20 @@ class AtkModsInput extends Component {
   renderInputs = () => {
     let inputs = [];
     for (let i = 0; i < this.state.numInputs; i++) {
-      inputs.push(<SingleAtkInput onAtkModChange={this.handleAtkModChange} onDmgModChange={this.handleDmgModChange} key={i} identifier={i} />);
+      inputs.push(<SingleAtkInput onAtkModChange={this.handleAtkModChange} onDmgModChange={this.handleDmgModChange} key={i} identifier={i} isDefault={this.state.isDefault} />);
     }
+
+    // if (this.state.isDefault) {
+    //   handleAtkModChange(13, 0);
+    //   handleAtkModChange(8, 1);
+    //   handleAtkModChange(13, 2);
+    //   handleAtkModChange(8, 3);
+    //   handleDmgModChange(8, 0);
+    //   handleDmgModChange(8, 1);
+    //   handleDmgModChange(6, 2);
+    //   handleDmgModChange(6, 3);
+    // }
+
     return inputs;
   }
 
@@ -75,6 +96,7 @@ class AtkModsInput extends Component {
     return (
       <div>
         <Button block bsStyle="info" onClick={this.handleAdditionalInput}>Add an attack</Button>
+        <Button block bsStyle="success" onClick={this.handleDefaultAttackInput}>Default</Button>
         {this.renderInputs()}
       </div>
     )

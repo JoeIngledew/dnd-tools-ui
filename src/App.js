@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import AtkCalc from './AtkCalc'
+import AtkCalc from './AtkCalc/AtkCalc'
 import CalcApi from './api/calcApi';
-import AtkOutput from './AtkOutput';
+import AtkOutput from './AtkCalc/AtkOutput';
 import { Grid, Col, Row } from 'react-bootstrap';
 
 class App extends Component {
@@ -21,26 +21,19 @@ class App extends Component {
   }
 
   handleSubmit(input) {
-    //alert("Submitted" + JSON.stringify(input));
     CalcApi.getResults(input)
       .then(results => {
-        //console.log("Results " + results);
-        //alert("Results " + JSON.stringify(results));
-        console.log("Got results, setting state. Stacks increasing by " + results.FinalStacks + " from " + this.state.existingStacks)
         this.setState({
           result: results,
           atkCount: results.AttackResult.length,
           existingStacks: Number(results.FinalStacks)
         });
-        console.log("Stacks is now (in App): " + this.state.existingStacks)
       })
       .catch(err => {
-        //console.log(err);
       });
   }
 
   onChangeStacks(newVal) {
-    console.log("stacks updating from " + this.state.existingStacks + " to " + newVal)
     this.setState({
       existingStacks: newVal
     })

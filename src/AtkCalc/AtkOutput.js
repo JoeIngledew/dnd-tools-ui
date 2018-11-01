@@ -10,11 +10,11 @@ class AtkOutput extends Component {
   }
 
   renderOutputs = () => {
-    let inputs = [];
+    let outputs = [];
     for (let i = 0; i < this.props.atkCount; i++) {
-      inputs.push(<p key={i}>{this.props.result.AttackResult[i]}</p>);
+      outputs.push(<p key={i}>{this.props.result.AttackResult[i]}</p>);
     }
-    return inputs;
+    return outputs;
   }
 
   render() {
