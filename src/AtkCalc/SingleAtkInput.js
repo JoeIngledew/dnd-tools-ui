@@ -7,65 +7,35 @@ class SingleAtkInput extends Component {
     super(props)
 
     this.state = {
-
+      AtkMod: 0,
+      DmgMod: 0
     }
 
     this.onAtkModChange = this.onAtkModChange.bind(this);
     this.onDmgModChange = this.onDmgModChange.bind(this);
-    this.getValue = this.getValue.bind(this);
-    this.getDmgValue = this.getDmgValue.bind(this);
   }
 
   onAtkModChange(name, value) {
+    console.log("atk mod change, Single attack input")
     this.props.onAtkModChange(value, this.props.identifier)
+    this.setState({
+      AtkMod: value
+    })
   }
 
   onDmgModChange(name, value) {
     this.props.onDmgModChange(value, this.props.identifier)
-  }
-
-  getValue() {
-    if (this.props.isDefault) {
-      switch (this.props.identifier) {
-        case 0:
-        case 2:
-          return 13;
-        case 1:
-        case 3:
-          return 8;
-        default:
-          return 0;
-      }
-    }
-    else {
-      return 0;
-    }
-  }
-
-  getDmgValue() {
-    if (this.props.isDefault) {
-      switch (this.props.identifier) {
-        case 0:
-        case 1:
-          return 8;
-        case 2:
-        case 3:
-          return 6;
-        default:
-          return 0;
-      }
-    }
-    else {
-      return 0;
-    }
+    this.setState({
+      DmgMod: value
+    })
   }
 
   render() {
     return(
       <div>
         <Well bsSize="small">
-          <NumericalInput name={"atkMod"} onChange={this.onAtkModChange} label={"AtkMod"} value={this.getValue()} />
-          <NumericalInput name={"dmgMod"} onChange={this.onDmgModChange} label={"DmgMod"} value={this.getDmgValue()} />
+          <NumericalInput name={"atkMod"} onChange={this.onAtkModChange} label={"AtkMod"} value={this.state.AtkMod} />
+          <NumericalInput name={"dmgMod"} onChange={this.onDmgModChange} label={"DmgMod"} value={this.state.DmgMod} />
         </Well>
       </div>
     )
@@ -73,3 +43,12 @@ class SingleAtkInput extends Component {
 }
 
 export default SingleAtkInput
+
+/* <label>
+          AtkMod
+          <input type="number" name="atkMod" onChange={this.onAtkModChange} />
+        </label>
+        <label>
+          DmgMod
+          <input type="number" name="dmgMod" onChange={this.onDmgModChange} />
+        </label> */
