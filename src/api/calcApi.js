@@ -11,7 +11,8 @@ var CalcApi = {
       Stacks: input.stacks,
       CritMinimum: input.critLowerBound,
       CritMultiplier: input.critMultiplier,
-      Attacks: input.attacks
+      Attacks: input.attacks,
+      DamageDie: input.damageDie
     }
 
     let data = {

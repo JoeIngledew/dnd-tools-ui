@@ -13,7 +13,8 @@ class AtkCalc extends Component {
       dmgmodifier: 0,
       critLowerBound: 20,
       critMultiplier: 2,
-      attacks: []
+      attacks: [],
+      damageDie: 4
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -61,6 +62,7 @@ class AtkCalc extends Component {
           <NumericalInput name={"dmgmodifier"} value={this.state.dmgmodifier} onChange={this.handleInputChange} label={"DmgModifier"}/>
           <NumericalInput name={"critLowerBound"} value={this.state.critLowerBound} onChange={this.handleInputChange} label={"CritLowerBound"}/>
           <NumericalInput name={"critMultiplier"} value={this.state.critMultiplier} onChange={this.handleInputChange} label={"CritMultiplier"}/>
+          <NumericalInput name={"damageDie"} value={this.state.damageDie} onChange={this.handleInputChange} label={"DamageDie"}/>
           
           <AtkModsInput onModsChange={this.handleModsInput} />
         </Form>
